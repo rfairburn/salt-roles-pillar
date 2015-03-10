@@ -8,6 +8,7 @@ from __future__ import absolute_import
 # Import libs
 import logging
 import yaml
+from salt.utils import fopen
 
 # Set up logging
 log = logging.getLogger(__name__)
@@ -109,7 +110,7 @@ def ext_pillar(minion_id,
     '''
 
     try:
-        with open(config_file, 'r') as config:
+        with fopen(config_file, 'r') as config:
             all_roles_dict = yaml.safe_load(config)
     except Exception:
         log.critical('Failed to load yaml from {0}.'.format(config_file))
